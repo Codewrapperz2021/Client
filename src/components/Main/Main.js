@@ -1,15 +1,8 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom'
-import '../../css/style.css';
-import '../../css/globalstyle.css';
-import '../../css/perfect-scrollbar.css';
-import '../../css/new.css';
+import styled from 'styled-components';
 import socket from '../../socket';
-import Vfooter from '../Masterlayout/Vfooter';
-import Vsidebar from '../Masterlayout/Vsidebar';
-import Vnavbar from '../Masterlayout/Vnavbar';
-
-
+import Sidebar from '../Masterlayout/Mainsidebar';
+import Navbar from '../Masterlayout/Navbar';
 
 const Main = (props) => {
   const roomRef = useRef();
@@ -18,12 +11,7 @@ const Main = (props) => {
   const [errMsg, setErrMsg] = useState('');
   const [username, setuserName] = useState();
   const [roomname, setroomName] = useState();
-  
-  const history = useHistory() 
 
-  function Cancel(){
-    history.push(`/`);
-  }
   useEffect(() => {
 
     socket.on('FE-error-user-exist', ({ error }) => {
@@ -53,42 +41,99 @@ const Main = (props) => {
   }
 
   return (
-    <div id="root">
-      <div id="main-wrapper">
-        <Vnavbar />
-        <Vsidebar />
-        <div class="content-body">
-          {/* <!-- row --> */}
-          <div class="container-fluid pt-6">
-            <div class="row " >
-              <div id="left-slide">
-                <div class="row mb-3" style={{marginTop:'7%'}}>
-                  <div className=' container text-center col-md-4 shadow p-4 'style={{backgroundColor:'#E8E8E8'}}>
-                  <h3>Join a meetting</h3>
-                  <hr></hr>
-                    <div className='d-flex justify-content-center p-4 mt-6'>
-                      
-                      <div className='d-flex flex-column'>
-                        <label style={{ fontSize: "20px", marginTop: '5px',color:'black' }} className="mb-4" for="formGroupExampleInput"><b>User Name</b></label>
-                        <label style={{ fontSize: "20px",color:'black' }} className="mb-4" for="formGroupExampleInput"><b>Room id</b></label>
-                      </div>
-                      <div className='d-flex flex-column ml-3'>
-                        <input className="form-control mb-3 " type="text" placeholder="Smith" onChange={(e) => setuserName(e.target.value)} ref={userRef} />
-                        <input className="form-control mb-3" type="text" placeholder="874" onChange={(e) => setroomName(e.target.value)} ref={roomRef} />
-                      </div>
-                    </div>
-                    <button onClick={Cancel} type="submit" class="btn btn-danger">Cancel</button>&nbsp;&nbsp;
-                    <button onClick={clickJoin} type="submit" class="btn btn-primary">Join</button>
-                    {err ? <div style={{ marginTop: '10px', fontSize: '20px', color: '#e85a71' }}>{errMsg}</div> : null}
+    <div>
+      <div className="sb-nav-fixed">
+        <Navbar />
+        <div id="layoutSidenav">
+          <div id="layoutSidenav_nav">
+            <Sidebar />
+          </div>
+          <div id="layoutSidenav_content">
+            <MainContainer>
+              <div>
+                <div className='row d-flex justify-content-around'>
+                  <div className='col-md-3'>
+                    <img src="vc1.jpg" alt="vc1" width="350" height="250" />
+                  </div>
+                  <div className='col-md-3'>
+                    <img src="vc2.jpg" alt="vc1" width="350" height="250" />
+                  </div>
+                  <div className='col-md-3'>
+                    <img src="vc3.jpg" alt="vc1" width="350" height="250" />
                   </div>
                 </div>
               </div>
-            </div>
+              <Row style={{ marginTop:"6%" }}>
+              <Label htmlFor="userName">User Name</Label>
+                <Input type="text" id="userName" placeholder="smith" onChange={(e) => setuserName(e.target.value)} ref={userRef} />             
+              </Row>
+              <Row>
+              <Label htmlFor="roomName">Room id</Label>
+                <Input type="text" id="roomName" placeholder="7832" onChange={(e) => setroomName(e.target.value)} ref={roomRef} />
+              </Row>
+              <JoinButton onClick={clickJoin}><div> Click To Join</div>  </JoinButton>
+              {err ? <Error>{errMsg}</Error> : null}
+            </MainContainer>
           </div>
         </div>
-        <Vfooter />
       </div>
+
     </div>
   );
 };
+
+const MainContainer = styled.div`
+  
+  flex-direction: column;
+`;
+
+const Row = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 15px;
+  line-height: 35px;
+`;
+
+const Label = styled.label`
+font-size: 20px;
+color: #FFFFFF;
+:hover {
+  color: #000000;
+}
+`;
+
+const Input = styled.input`
+  width: 150px;
+  height: 35px;
+  margin-left: 15px;
+  margin-right:40%;
+  padding-left: 10px;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+`;
+
+const Error = styled.div`
+  margin-top: 10px;
+  font-size: 20px;
+  color: #e85a71;
+`;
+
+const JoinButton = styled.button`
+  margin-top: 3%;
+  outline: none;
+  border: none;
+  border-radius: 15px;
+  height: 40px;
+  color: #d8e9ef;
+  background-color: #4ea1d3;
+  font-size: 19px;
+  font-weight: 500;
+
+  :hover {
+    background-color: #7bb1d1;
+    cursor: pointer;
+  }
+`;
 export default Main;

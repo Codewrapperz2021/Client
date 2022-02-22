@@ -34,7 +34,7 @@ const Chat = ({ display, roomId }) => {
   }
 
   const sendMessage = (e) => {
-    if (e.key === 'Enter' || e.key === 'Shift') {
+    if ( e.key === 'Shift' ) {
       const msg = e.target.value;
       if (msg) {
         socket.emit('BE-send-message', { roomId, msg, sender: currentUser });
@@ -42,18 +42,12 @@ const Chat = ({ display, roomId }) => {
       }
     }
   };
-  const sendM = (e) => {
-    const msg = e.target.value;
-    if (msg) {
-      socket.emit('BE-send-message', { roomId, msg, sender: currentUser });
-      inputRef.current.value = '';
-    }
-  };
 
-  return (
+
+return (
     <ChatContainer className={display ? '' : 'width0'}>
       <TopHeader>Group Chat Room</TopHeader>
-      {/* <button  onClick={sendM}>Send</button> */}
+     
       {/* <button onClick={clickEmoji}>Emoji</button> */}
       <ChatArea>
         <MessageList>
@@ -88,6 +82,7 @@ const Chat = ({ display, roomId }) => {
           /> */}
       <form class="form-inline">
         <div class="input-group mb-2 mr-sm-2">
+        <button type='button' value="sub" onClick={sendMessage} ref={inputRef}>Send</button>
           <div class="input-group-prepend">
             <img className='input-group-text text-dark' style={{ width: '45px', height: '45px' }} src={emoji} alt={''}></img>
           </div>
@@ -96,8 +91,8 @@ const Chat = ({ display, roomId }) => {
             <img className='input-group-text' style={{ width: '45px', height: '45px' }} src={file} alt={''}></img>
           </div>
           <div class="input-group-prepend">
-            <button type='button' style={{ display: 'none' }} id='hidden-file' />
-            <img className='input-group-text' style={{ width: '45px', height: '45px' }} src={send} alt={''} value="send" onClick={sendM}></img>
+            <button type='butto' style={{ display: 'none' }} id='hidden-file' />
+            <img className='input-group-text' style={{ width: '45px', height: '45px' }} src={send} alt={''} value="send"></img>
           </div>
         </div>
       </form>
@@ -156,11 +151,9 @@ const Message = styled.div`
   margin-top: 15px;
   margin-left: 15px;
   text-align: left;
-
   > strong {
     margin-left: 0px;
   }
-
   > p {
     max-width: 65%;
     margin-left: -5px;
@@ -184,11 +177,9 @@ const UserMessage = styled.div`
   margin-top: 15px;
   text-align: right;
   margin-right: 0%;
-
   > strong {
     margin-right: 0px;
   }
-
   > p {
     max-width: 65%;
     width: auto;

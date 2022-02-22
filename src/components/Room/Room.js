@@ -6,10 +6,7 @@ import VideoCard from '../Video/VideoCard';
 import Chat from '../Chat/Chat';
 import Roomsidebar from '../Masterlayout/Roomsidebar';
 import Navbar from '../Masterlayout/Navbar';
-import Vnavbar from '../Masterlayout/Vnavbar';
-import Vsidebar from '../Masterlayout/Vsidebar';
-import Navsidebar from '../Masterlayout/Navsidebar';
-import Vfooter from '../Masterlayout/Vfooter';
+
 const Room = (props) => {
   const currentUser = sessionStorage.getItem('user');
   const [peers, setPeers] = useState([]);
@@ -25,12 +22,6 @@ const Room = (props) => {
   const screenTrackRef = useRef();
   const userStream = useRef();
   const roomId = props.match.params.roomId;
-
-  document.onkeydown=function(event){
-    if(event.keyCode==116 || event.keyCode == 82){
-      event.preventDefault();
-    }
-  }
 
   useEffect(() => {
     // Get Video Devices
@@ -356,10 +347,10 @@ const Room = (props) => {
   return (
     <div>
       <div className="sb-nav-fixed">
-       <Navsidebar />
-       
-          {/* <div id="layoutSidenav_nav"> */}
-          {/* <Roomsidebar
+        <Navbar />
+        <div id="layoutSidenav">
+          <div id="layoutSidenav_nav">
+          <Roomsidebar
                   clickScreenSharing={clickScreenSharing}
                   clickChat={clickChat}
                   clickCameraDevice={clickCameraDevice}
@@ -370,8 +361,8 @@ const Room = (props) => {
                   videoDevices={videoDevices}
                   showVideoDevices={showVideoDevices}
                   setShowVideoDevices={setShowVideoDevices}
-                /> */}
-          {/* </div> */}
+                />
+          </div>
           <div id="layoutSidenav_content">
            
             <RoomContainer onClick={clickBackground}>
@@ -401,8 +392,8 @@ const Room = (props) => {
               </VideoAndBarContainer>            
               <Chat display={displayChat} roomId={roomId} />
             </RoomContainer>
-            <Vfooter />
           </div>
+        </div>
       </div>
     </div>
   );

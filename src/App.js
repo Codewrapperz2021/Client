@@ -3,10 +3,6 @@ import { BrowserRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import './App.css'
 import Path from './Path';
-import './css/style.css';
-import './css/globalstyle.css';
-import './css/perfect-scrollbar.css';
-import './css/new.css';
 
 function App() {
   return (
@@ -19,7 +15,15 @@ function App() {
 }
 
 const AppContainer = styled.div`
-  
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(1px + 2vmin);
+  color: black;
+  background-color: #454552;
+  text-align: center;
 `;
 
 export default App;

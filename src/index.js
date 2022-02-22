@@ -1,11 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import './index.css';
 import App from './App';
-import './css/style.css';
-import './css/globalstyle.css';
-import './css/perfect-scrollbar.css';
-import './css/new.css';
-
 
 import * as serviceWorker from "./serviceWorker";
 

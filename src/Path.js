@@ -10,25 +10,19 @@ import Sidebar from './components/Masterlayout/Mainsidebar';
 import Roomsidebar from './components/Masterlayout/Roomsidebar';
 import Chat from './components/Chat/Chat';
 import Emoji from './components/Chat/Emoji';
-import Landing from './components/landing';
-import './css/style.css';
-import './css/globalstyle.css';
-import './css/perfect-scrollbar.css';
-import './css/new.css';
 
 
 export default function Path() {
     return <div>
         <Switch>
             <Route exact path="/navbar" component={Navbar} />
-            <Route exact path="/main" component={Main} />
+            <Route exact path="/" component={Main} />
             <Route exact path="/room/:roomId" component={Room} />
             <Route exact path="/bottambar" component={BottomBar} />
             <Route exact path="/mainsidebar" component={Sidebar} />
             <Route exact path="/roomsidebar" component={Roomsidebar} />
             <Route exact path="/chat" component={Chat} />
             <Route exact path="/emoji" component={Emoji} />
-            <Route exact path="/" component={Landing} />
         </Switch>
     </div>;
 }
