@@ -1,29 +1,25 @@
-import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import styled from 'styled-components';
-import './App.css'
-import Path from './Path';
+import logo from './logo.svg';
+import './App.css';
 
 function App() {
   return (
-    <BrowserRouter>
-      <AppContainer>
-        <Path/>       
-      </AppContainer>
-    </BrowserRouter>
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+    </div>
   );
 }
-
-const AppContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(1px + 2vmin);
-  color: black;
-  background-color: #454552;
-  text-align: center;
-`;
 
 export default App;
