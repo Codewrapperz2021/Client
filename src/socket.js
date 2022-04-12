@@ -1,5 +1,9 @@
-import io from 'socket.io-client';
-// const sockets = io('https://server-3wl8.onrender.com', { autoConnect: true, forceNew: true });
-const sockets = io('https://master.d2p32jz8cu0did.amplifyapp.com', { autoConnect: true, forceNew: true });
+import io from "socket.io-client";
+const sockets = io("wss://backendvideocon.herokuapp.com", {
+  autoConnect: true,
+  forceNew: true,
+});
+// wss://videoconferencingsvc-hwr7nalbaq-el.a.run.app
+// 'http://192.168.0.144:3001'
 // const sockets = io('/');
 export default sockets;
